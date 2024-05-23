@@ -1,0 +1,30 @@
+.hidden-checkbox {
+  display: none;
+}
+
+.custom-checkbox-container {
+  padding: 10px;
+}
+
+.custom-checkbox + label {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  background-color: #efefef;
+  border-radius: 50%;
+  position: relative;
+  margin-right: 4px;
+}
+
+.custom-checkbox:checked + label::after {
+  content: "";
+  width: 15px;
+  height: 15px;
+  background-image: url("/icons/check.png");
+  background-size: 10px 10px;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  background-color: #ff5286;
+  border-radius: 50%;
+}
