@@ -2,6 +2,7 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import { IconInput } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import SocialLogin from "./SocialLogin";
 
 interface ILoginFormProps {}
 
@@ -17,7 +18,7 @@ const LoginForm: React.FunctionComponent<ILoginFormProps> = (props) => {
             <div className="p-2">
               <IconInput
                 icon="/icons/email.png"
-                placeholder="이메일"
+                placeholder="아이디"
                 className="rounded-md"></IconInput>
             </div>
             <div className="p-2">
@@ -43,41 +44,18 @@ const LoginForm: React.FunctionComponent<ILoginFormProps> = (props) => {
               </Button>
             </div>
             <div className="border-t">
-              <span className="flex text-xs text-gray-400 justify-center pt-5">
-                또는 아래 계정으로 간편 로그인하기
-              </span>
-              <div className="flex justify-center p-5">
+              <SocialLogin></SocialLogin>
+              <div className="flex justify-between pt-5 pb-5">
                 <Button variant="none">
-                  <img
-                    src="/icons/google.png"
-                    alt="google"
-                    width={110}
-                    height={48}></img>
+                  <span className={cn("text-xs text-primary")}>회원가입</span>
                 </Button>
-                <Button variant="none">
-                  <img
-                    src="/icons/kakao.png"
-                    alt="kakao"
-                    width={110}
-                    height={48}></img>
-                </Button>
-                <Button variant="none">
-                  <img
-                    src="/icons/naver.png"
-                    alt="naver"
-                    width={110}
-                    height={48}></img>
-                </Button>
-              </div>
-              <div>
-                <Button variant="none">회원가입</Button>
-                <div>
+                <div className="flex">
                   <Button variant="none" className="pr-0">
-                    아이디찾기
+                    <span className="text-xs">아이디찾기</span>
                   </Button>
-                  <span>.</span>
+                  <span className="p-2 ">·</span>
                   <Button variant="none" className="p-0">
-                    비밀번호찾기
+                    <span className="text-xs">비밀번호찾기</span>
                   </Button>
                 </div>
               </div>
