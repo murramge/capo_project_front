@@ -16,10 +16,13 @@ import {
 import { loginSchema } from "@/src/utils/LoginSchema";
 import { loginInputValue } from "@/src/utils/loginInputMappings";
 import classNames from "classnames";
+import { loginUserApi } from "@/src/api/loginUserApi";
+import { useRouter } from "next/router";
 
 interface ILoginFormProps {}
 
 const LoginForm: React.FunctionComponent<ILoginFormProps> = (props) => {
+  const router = useRouter();
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -27,8 +30,21 @@ const LoginForm: React.FunctionComponent<ILoginFormProps> = (props) => {
       password: "",
     },
   });
-  const onSubmit = (values: z.infer<typeof loginSchema>) => {
-    console.log(values);
+  const handleLogin = async (values: z.infer<typeof loginSchema>) => {
+    try {
+      const response = await loginUserApi({
+        user_id: values.userid,
+        password: values.password,
+      });
+      console.log(response.result);
+      const token = response.result.access_token;
+      if (typeof window !== "undefined") {
+        localStorage.setItem("accessToken", token);
+      }
+      router.push("/");
+    } catch (error) {
+      console.error("로그인 실패: ", error);
+    }
   };
 
   return (
@@ -40,7 +56,7 @@ const LoginForm: React.FunctionComponent<ILoginFormProps> = (props) => {
         <div className="flex justify-center items-center ">
           <div className="w-3/4">
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)}>
+              <form onSubmit={form.handleSubmit(handleLogin)}>
                 {loginInputValue.map((item) => (
                   <div className="p-2">
                     <FormField

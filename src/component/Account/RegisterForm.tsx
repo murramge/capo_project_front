@@ -15,6 +15,7 @@ import { Input } from "@/components/ui/input";
 import { registerSchema } from "@/src/utils/RegisterSchema";
 import { registerInputValue } from "@/src/utils/registerInputMappings";
 import classNames from "classnames";
+import { createUserApi } from "@/src/api/createUserApi";
 
 interface IRegisterFormProps {}
 
@@ -30,8 +31,18 @@ const RegisterForm: React.FunctionComponent<IRegisterFormProps> = (props) => {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof registerSchema>) => {
-    console.log(values);
+  const handleRegister = async (values: z.infer<typeof registerSchema>) => {
+    try {
+      const result = await createUserApi({
+        user_id: values.userid,
+        password: values.password,
+        phone_number: values.phoneNumber,
+        user_email: values.email,
+      });
+      console.log("User created successfully:", result);
+    } catch (errors) {
+      console.error("Error creating user: ", errors);
+    }
   };
 
   return (
@@ -42,10 +53,13 @@ const RegisterForm: React.FunctionComponent<IRegisterFormProps> = (props) => {
         </div>
         <Form {...form}>
           <div className="flex justify-center items-center ">
-            <form onSubmit={form.handleSubmit(onSubmit)} className="w-3/4">
-              {registerInputValue.map((item) => (
-                <div className="p-2">
+            <form
+              onSubmit={form.handleSubmit(handleRegister)}
+              className="w-3/4">
+              {registerInputValue.map((item, index) => (
+                <div key={index} className="p-2">
                   <FormField
+                    key={index}
                     control={form.control}
                     name={item.name}
                     render={({ field }) => (
