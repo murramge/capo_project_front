@@ -6,7 +6,7 @@ const useAuthGuard = () => {
 
   useEffect(() => {
     const isAuthenticated = !!localStorage.getItem("accessToken");
-    if (!isAuthenticated) {
+    if (!isAuthenticated && !router.pathname.startsWith("/auth")) {
       router.push("/auth/login");
     }
   }, []);
