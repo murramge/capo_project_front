@@ -1,10 +1,12 @@
+import useAuthGuard from "@/src/hooks/useAuthGuard";
 import AccountLayout from "@/src/layouts/AccountLayout";
 import * as React from "react";
 
-interface ILoginProps {}
+interface IRegisterProps {}
 
-const Login: React.FunctionComponent<ILoginProps> = (props) => {
+const Register: React.FunctionComponent<IRegisterProps> = (props) => {
+  useAuthGuard();
   return <AccountLayout></AccountLayout>;
 };
 
-export default Login;
+export default Register;
