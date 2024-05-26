@@ -36,14 +36,14 @@ const LoginForm: React.FunctionComponent<ILoginFormProps> = (props) => {
         user_id: values.userid,
         password: values.password,
       });
-      console.log(response.result);
+
       const token = response.result.access_token;
       if (typeof window !== "undefined") {
         localStorage.setItem("accessToken", token);
       }
       router.push("/");
     } catch (error) {
-      console.error("로그인 실패: ", error);
+      alert(error.response.data.reason);
     }
   };
 

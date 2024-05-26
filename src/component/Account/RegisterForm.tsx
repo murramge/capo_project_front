@@ -15,14 +15,23 @@ import { Input } from "@/components/ui/input";
 import { registerSchema } from "@/src/utils/RegisterSchema";
 import { registerInputValue } from "@/src/utils/registerInputMappings";
 import classNames from "classnames";
-import { createUserApi, idCheckDuplicates } from "@/src/api/createUserApi";
+import {
+  CheckverifyEmailApi,
+  createUserApi,
+  idCheckDuplicatesApi,
+  verifyEmailApi,
+} from "@/src/api/createUserApi";
+import { useRouter } from "next/router";
 
 interface IRegisterFormProps {}
 
 const RegisterForm: React.FunctionComponent<IRegisterFormProps> = (props) => {
+  const router = useRouter();
+
   const [checkDuplication, setCheckDuplication] = React.useState(false);
   const [emailAuthForm, setEmailAuthForm] = React.useState(false);
   const [verificationCode, setVerificationCode] = React.useState("");
+  const [checkVerifyCode, setCheckVerifyCode] = React.useState(false);
 
   const form = useForm<z.infer<typeof registerSchema>>({
     resolver: zodResolver(registerSchema),
@@ -43,7 +52,10 @@ const RegisterForm: React.FunctionComponent<IRegisterFormProps> = (props) => {
         phone_number: values.phoneNumber,
         user_email: values.email,
       });
-      console.log("User created successfully:", result);
+
+      if (result) {
+        router.push("/auth/login");
+      }
     } catch (errors) {
       console.error("Error creating user: ", errors);
     }
@@ -51,7 +63,7 @@ const RegisterForm: React.FunctionComponent<IRegisterFormProps> = (props) => {
 
   const onCheckDuplicates = async () => {
     try {
-      const result = await idCheckDuplicates(form.getValues("userid"));
+      const result = await idCheckDuplicatesApi(form.getValues("userid"));
       if (result.result) {
         setCheckDuplication(true);
         alert("사용 가능한 아이디입니다.");
@@ -63,16 +75,37 @@ const RegisterForm: React.FunctionComponent<IRegisterFormProps> = (props) => {
     }
   };
 
-  const onCheckVerificationCode = async () => {
+  const onVerificationCode = async () => {
     const isEmailValid = await form.trigger("email");
     if (isEmailValid) {
-      setEmailAuthForm(true);
+      try {
+        const result = await verifyEmailApi({
+          user_email: form.getValues("email"),
+        });
+        if (result.result_code == 201) {
+          alert("인증번호가 메일로 발송되었습니다.");
+          setEmailAuthForm(true);
+        }
+      } catch (errors) {
+        console.error("Error checking user: ", errors);
+      }
     }
   };
 
-  const onVerifyCode = async () => {
-    console.log("Verification code entered: ", verificationCode);
-    // 여기에서 인증번호 검증 로직을 추가하세요.
+  const onVerificationCodeCheck = async () => {
+    try {
+      const result = await CheckverifyEmailApi(
+        form.getValues("email"),
+        verificationCode
+      );
+
+      if (result.result_code == 200) {
+        alert("이메일 인증이 완료되었습니다.");
+        setCheckVerifyCode(true);
+      }
+    } catch (errors) {
+      alert(errors.response.data.reason);
+    }
   };
 
   return (
@@ -121,7 +154,7 @@ const RegisterForm: React.FunctionComponent<IRegisterFormProps> = (props) => {
                                   className={cn(
                                     "w-[20%] text-xs text-primary font-bold"
                                   )}
-                                  onClick={onCheckVerificationCode}>
+                                  onClick={onVerificationCode}>
                                   이메일 인증
                                 </button>
                               )}
@@ -141,7 +174,7 @@ const RegisterForm: React.FunctionComponent<IRegisterFormProps> = (props) => {
                                   className={cn(
                                     "w-[20%] text-xs text-primary font-bold"
                                   )}
-                                  onClick={onVerifyCode}>
+                                  onClick={onVerificationCodeCheck}>
                                   확인
                                 </button>
                               </div>
