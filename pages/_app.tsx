@@ -4,14 +4,29 @@ import useAuthGuard from "@/src/hooks/useAuthGuard";
 import "@/styles/globals.css";
 import "@/styles/styles.css";
 import type { AppProps } from "next/app";
-
-//TODO : Header 예외처리주기
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 export default function App({ Component, pageProps }: AppProps) {
+  const router = useRouter();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   useAuthGuard();
-
-  const isAuthenticated =
-    typeof window !== "undefined" && !!localStorage.getItem("accessToken");
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken");
+    if (accessToken) {
+      setIsAuthenticated(true);
+    } else {
+      setIsAuthenticated(false);
+    }
+  }, []);
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken");
+    if (accessToken) {
+      setIsAuthenticated(true);
+    } else {
+      setIsAuthenticated(false);
+    }
+  }, [router.pathname]);
   return (
     <>
       {isAuthenticated ? <AuthHeader /> : <UnAuthHeader />}

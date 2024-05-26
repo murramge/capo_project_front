@@ -19,6 +19,7 @@ export const registerSchema = z
     phoneNumber: z
       .string()
       .regex(/^01[0-9]{9}$/, "유효하지 않은 전화번호 형식입니다."),
+    authNumber: z.string(),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "비밀번호가 일치하지 않습니다.",
