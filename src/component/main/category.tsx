@@ -1,46 +1,72 @@
 import { CATEGORY } from "@/src/utils/constants";
-import * as React from "react";
+import React, { useState } from "react";
 
 interface ICategoryProps {}
 
-const Category: React.FunctionComponent<ICategoryProps> = (props) => {
-  const [categoryActive, setCategoryActive] = React.useState("");
-  const onClickCategory = (e: any) => {
-    const name = e.target.attributes["data-name"].value;
-    categoryActive === name ? setCategoryActive("") : setCategoryActive(name);
+const ListItem: React.FC<{
+  name: string;
+  active: boolean;
+  onClick: (name: string) => void;
+}> = ({ name, active, onClick }) => {
+  const handleClick = () => {
+    onClick(name);
   };
 
   return (
-    <ul className="flex flex-col w-full h-full gap-2 list-none">
-      <li
-        key="all"
-        data-name="all"
-        className={`p-4 px-5 ${
-          categoryActive === "all" ? "bg-gray-100 rounded-full" : ""
-        }`}
-        onClick={(e) => onClickCategory(e)}>
-        전체
-      </li>
-      {CATEGORY.map((name) => (
-        <li
-          key={name.engname}
-          data-name={name.engname}
-          className={`p-4 px-5 ${
-            categoryActive === name.engname ? "bg-gray-100 rounded-full" : ""
-          }`}
-          onClick={(e) => onClickCategory(e)}>
-          {name.korname}
-        </li>
+    <li
+      key={name}
+      data-name={name}
+      className={`p-4 px-5 ${active ? "bg-gray-100 rounded-full" : ""}`}
+      onClick={handleClick}>
+      <div className="flex gap-2">
+        <div className="w-15 h-15 flex items-center">
+          <img
+            src={`/icons/${name}.png`}
+            alt={name}
+            width={15}
+            height={15}
+            className="object-cover"
+          />
+        </div>
+        <span>
+          {name === "barter"
+            ? "교환하기"
+            : name === "all"
+            ? "전체"
+            : CATEGORY.find((category) => category.engname === name)?.korname}
+        </span>
+      </div>
+    </li>
+  );
+};
+
+const Category: React.FunctionComponent<ICategoryProps> = () => {
+  const [categoryActive, setCategoryActive] = useState("");
+
+  const onClickCategory = (name: string) => {
+    setCategoryActive((prev) => (prev === name ? "" : name));
+  };
+
+  return (
+    <ul className="flex flex-col w-full h-full gap-2 list-none px-2">
+      <ListItem
+        name="all"
+        active={categoryActive === "all"}
+        onClick={onClickCategory}
+      />
+      {CATEGORY.map(({ engname }) => (
+        <ListItem
+          key={engname}
+          name={engname}
+          active={categoryActive === engname}
+          onClick={onClickCategory}
+        />
       ))}
-      <li
-        key="barter"
-        data-name="barter"
-        className={`p-4 px-5 ${
-          categoryActive === "barter" ? "bg-gray-100 rounded-full" : ""
-        }`}
-        onClick={(e) => onClickCategory(e)}>
-        교환하기
-      </li>
+      <ListItem
+        name="barter"
+        active={categoryActive === "barter"}
+        onClick={onClickCategory}
+      />
     </ul>
   );
 };
