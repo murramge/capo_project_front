@@ -42,8 +42,12 @@ const LoginForm: React.FunctionComponent<ILoginFormProps> = (props) => {
         localStorage.setItem("accessToken", token);
       }
       router.push("/");
-    } catch (error) {
-      alert(error.response.data.reason);
+    } catch (error: any) {
+      if (error.response.data.reason == undefined) {
+        alert("존재하지 않는 계정입니다.");
+      } else {
+        alert(error.response.data.reason);
+      }
     }
   };
 
@@ -57,8 +61,8 @@ const LoginForm: React.FunctionComponent<ILoginFormProps> = (props) => {
           <div className="w-3/4">
             <Form {...form}>
               <form onSubmit={form.handleSubmit(handleLogin)}>
-                {loginInputValue.map((item) => (
-                  <div className="p-2">
+                {loginInputValue.map((item, index) => (
+                  <div key={index} className="p-2">
                     <FormField
                       control={form.control}
                       name={item.name}

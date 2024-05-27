@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const createUserApi = async (userData) => {
+export const createUserApi = async (userData: any) => {
   let config = {
     method: "post",
     maxBodyLength: Infinity,
@@ -19,7 +19,7 @@ export const createUserApi = async (userData) => {
   }
 };
 
-export const idCheckDuplicatesApi = async (userid) => {
+export const idCheckDuplicatesApi = async (userid: any) => {
   let config = {
     method: "get",
     maxBodyLength: Infinity,
@@ -34,7 +34,7 @@ export const idCheckDuplicatesApi = async (userid) => {
   }
 };
 
-export const verifyEmailApi = async (useremail) => {
+export const verifyEmailApi = async (useremail: any) => {
   let config = {
     method: "post",
     maxBodyLength: Infinity,
@@ -52,7 +52,10 @@ export const verifyEmailApi = async (useremail) => {
   }
 };
 
-export const CheckverifyEmailApi = async (useremail, verificationCode) => {
+export const CheckverifyEmailApi = async (
+  useremail: any,
+  verificationCode: any
+) => {
   console.log(useremail, verificationCode);
   let config = {
     method: "get",

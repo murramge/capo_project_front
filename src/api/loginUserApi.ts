@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const loginUserApi = async (userData) => {
+export const loginUserApi = async (userData: any) => {
   console.log(userData);
   let config = {
     method: "post",

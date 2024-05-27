@@ -64,7 +64,8 @@ const RegisterForm: React.FunctionComponent<IRegisterFormProps> = (props) => {
   const onCheckDuplicates = async () => {
     try {
       const result = await idCheckDuplicatesApi(form.getValues("userid"));
-      if (result.result) {
+
+      if (!result.result) {
         setCheckDuplication(true);
         alert("사용 가능한 아이디입니다.");
       } else {
@@ -103,7 +104,7 @@ const RegisterForm: React.FunctionComponent<IRegisterFormProps> = (props) => {
         alert("이메일 인증이 완료되었습니다.");
         setCheckVerifyCode(true);
       }
-    } catch (errors) {
+    } catch (errors: any) {
       alert(errors.response.data.reason);
     }
   };
