@@ -5,7 +5,7 @@ interface ICategoryProps {}
 
 const Category: React.FunctionComponent<ICategoryProps> = (props) => {
   const [categoryActive, setCategoryActive] = React.useState("");
-  const onClickCategory = (e) => {
+  const onClickCategory = (e: any) => {
     const name = e.target.attributes["data-name"].value;
     categoryActive === name ? setCategoryActive("") : setCategoryActive(name);
   };
