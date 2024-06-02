@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import * as React from "react";
+import Image from "next/image";
 
 interface ISocialLoginProps {}
 
@@ -11,17 +12,25 @@ const SocialLogin: React.FunctionComponent<ISocialLoginProps> = (props) => {
       </span>
       <div className="flex justify-center p-5">
         <Button variant="none">
-          <img
+          <Image
             src="/icons/google.png"
             alt="google"
             width={110}
-            height={48}></img>
+            height={48}></Image>
         </Button>
         <Button variant="none">
-          <img src="/icons/kakao.png" alt="kakao" width={110} height={48}></img>
+          <Image
+            src="/icons/kakao.png"
+            alt="kakao"
+            width={110}
+            height={48}></Image>
         </Button>
         <Button variant="none">
-          <img src="/icons/naver.png" alt="naver" width={110} height={48}></img>
+          <Image
+            src="/icons/naver.png"
+            alt="naver"
+            width={110}
+            height={48}></Image>
         </Button>
       </div>
     </>

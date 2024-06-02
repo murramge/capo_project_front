@@ -1,5 +1,5 @@
-import AuthHeader from "@/src/common/header/AuthHeader";
-import UnAuthHeader from "@/src/common/header/UnAuthHeader";
+import AuthHeader from "@/src/components/common/header/AuthHeader";
+import UnAuthHeader from "@/src/components/common/header/UnAuthHeader";
 import useAuthGuard from "@/src/hooks/useAuthGuard";
 import "@/styles/globals.css";
 import "@/styles/styles.css";

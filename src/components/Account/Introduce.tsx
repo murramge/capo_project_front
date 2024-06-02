@@ -1,6 +1,6 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
-
+import Image from "next/image";
 interface IIntroduceProps {}
 
 const Introduce: React.FunctionComponent<IIntroduceProps> = (props) => {
@@ -18,11 +18,11 @@ const Introduce: React.FunctionComponent<IIntroduceProps> = (props) => {
           </p>
         </h4>
         <div className="pt-10">
-          <img
+          <Image
             src="/images/testimage.jpg"
             alt="testimage"
             width={500}
-            height={400}></img>
+            height={400}></Image>
         </div>
       </div>
     </aside>

@@ -1,5 +1,6 @@
 import { CATEGORY } from "@/src/utils/constants";
 import React, { useState } from "react";
+import Image from "next/image";
 
 interface ICategoryProps {}
 
@@ -20,7 +21,7 @@ const ListItem: React.FC<{
       onClick={handleClick}>
       <div className="flex gap-2">
         <div className="w-15 h-15 flex items-center">
-          <img
+          <Image
             src={`/icons/${name}.png`}
             alt={name}
             width={15}
@@ -44,6 +45,7 @@ const Category: React.FunctionComponent<ICategoryProps> = () => {
   const [categoryActive, setCategoryActive] = useState("");
 
   const onClickCategory = (name: string) => {
+    //전역변수로 사용해야 할 것 같음.
     setCategoryActive((prev) => (prev === name ? "" : name));
   };
 

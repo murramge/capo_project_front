@@ -1,5 +1,5 @@
 import { useLoginGuard } from "@/src/hooks/useAuthGuard";
-import AccountLayout from "@/src/layouts/AccountLayout";
+import AccountLayout from "@/src/components/layouts/AccountLayout";
 
 import * as React from "react";
 

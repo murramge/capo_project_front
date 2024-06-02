@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import * as React from "react";
+import Image from "next/image";
 
 interface IUnAuthHeaderProps {}
 
@@ -8,7 +9,11 @@ const UnAuthHeader: React.FunctionComponent<IUnAuthHeaderProps> = (props) => {
   return (
     <header className="p-3 flex">
       <Button variant="none">
-        <img src="/images/logo.png" alt="logo" width={150} height={48}></img>
+        <Image
+          src="/images/logo.png"
+          alt="logo"
+          width={150}
+          height={48}></Image>
       </Button>
       <Input
         icon="/icons/search.png"
