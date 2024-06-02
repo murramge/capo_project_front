@@ -11,7 +11,7 @@ const MainLayout: React.FunctionComponent<IMainLayoutProps> = (props) => {
       <aside className="w-[15%]">
         <Category></Category>
       </aside>
-      <main className="w-[80%]">
+      <main className="w-[80%] flex justify-center items-center">
         <CardView></CardView>
       </main>
       <aside className="w-[10%]">
