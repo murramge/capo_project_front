@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 import * as React from "react";
 import { useFormStore } from "../../utils/store";
 import { CreatePhotocardApi } from "@/src/api/CreatePhotoCardApi";

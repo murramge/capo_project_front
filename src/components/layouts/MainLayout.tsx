@@ -8,10 +8,10 @@ interface IMainLayoutProps {}
 const MainLayout: React.FunctionComponent<IMainLayoutProps> = (props) => {
   return (
     <div className="flex">
-      <aside className="w-[20%]">
+      <aside className="w-[15%]">
         <Category></Category>
       </aside>
-      <main className="w-[70%]">
+      <main className="w-[80%]">
         <CardView></CardView>
       </main>
       <aside className="w-[10%]">
