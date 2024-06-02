@@ -2,16 +2,29 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import * as React from "react";
 import { useFormStore } from "../../utils/store";
+import { CreatePhotocardApi } from "@/src/api/CreatePhotoCardApi";
 
 interface ISalesPageHeaderProps {}
 
 const SalesPageHeader: React.FunctionComponent<ISalesPageHeaderProps> = (
   props
 ) => {
-  const { formData } = useFormStore();
+  const { formData, thumbnailId, imageId } = useFormStore();
 
-  const handleProductSale = () => {
-    console.log("판매 등록:", formData);
+  const handleProductSale = async () => {
+    try {
+      const response = await CreatePhotocardApi({
+        title: formData.productname,
+        content: formData.description,
+        category: formData.category,
+        price: formData.price,
+        thumbnail_id: thumbnailId,
+        images: [imageId],
+      });
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

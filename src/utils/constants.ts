@@ -1,10 +1,10 @@
 export const CATEGORY = [
   {
-    engname: "boygroup",
+    engname: "BOY_GROUP",
     korname: "보이그룹",
   },
   {
-    engname: "girlgroup",
+    engname: "GIRL_GROUP",
     korname: "걸그룹",
   },
   {

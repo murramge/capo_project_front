@@ -1,12 +1,15 @@
 import * as React from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { uploadFileApi } from "@/src/api/ImageUploadApi";
+import { useFormStore } from "@/src/utils/store";
 
 interface IImageUploadProps {}
 
 const ImageUpload: React.FunctionComponent<IImageUploadProps> = (props) => {
   const [previewSrcs, setPreviewSrcs] = React.useState<string[]>([]);
   const fileInputRef = React.useRef<HTMLInputElement>(null);
+  const { formData, setFormData, setThumbnailId, setImageId } = useFormStore();
 
   const handleImageClick = () => {
     if (fileInputRef.current) {
@@ -14,7 +17,9 @@ const ImageUpload: React.FunctionComponent<IImageUploadProps> = (props) => {
     }
   };
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const files = event.target.files;
     if (files) {
       const newPreviewSrcs: string[] = [];
@@ -24,8 +29,18 @@ const ImageUpload: React.FunctionComponent<IImageUploadProps> = (props) => {
         newPreviewSrcs.push(src);
       }
       setPreviewSrcs(newPreviewSrcs);
-      // 파일을 서버로 업로드하거나 추가 처리를 여기에 작성할 수 있습니다.
-      console.log("Selected files:", files);
+
+      try {
+        const response = await uploadFileApi(files[0]);
+        if (response) {
+          console.log(response.result[0].thumbnail_path);
+          console.log(response.result[0].id);
+          setThumbnailId(response.result[0].thumbnail_path);
+          setImageId(response.result[0].id);
+        }
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 
@@ -78,7 +93,7 @@ const ImageUpload: React.FunctionComponent<IImageUploadProps> = (props) => {
                       width={180}
                       height={300}
                       className="rounded-md"
-                      objectFit="contain"></Image>
+                      objectFit="cover"></Image>
                   </div>
                 </div>
               ))}
