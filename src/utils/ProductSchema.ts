@@ -11,7 +11,6 @@ export const ProductSchema = z.object({
     .min(10, { message: "설명은 최소 10글자 이상이어야 합니다." }),
   price: z
     .number()
-    .min(0, { message: "가격은 숫자이어야 하며 0보다 커야 합니다." }),
-  thumbnail_id: z.string(),
-  images: z.array(z.string()),
+    .min(0, { message: "가격은 숫자이어야 하며 0보다 커야 합니다." })
+    .optional(),
 });

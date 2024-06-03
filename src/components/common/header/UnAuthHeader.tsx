@@ -6,6 +6,17 @@ import Image from "next/image";
 interface IUnAuthHeaderProps {}
 
 const UnAuthHeader: React.FunctionComponent<IUnAuthHeaderProps> = (props) => {
+  const [searchValue, setSearchValue] = React.useState("");
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      handleSearch();
+    }
+  };
+  const handleSearch = () => {
+    console.log("검색어:", searchValue);
+    // 여기에서 검색 로직을 추가하면 됩니다.
+  };
   return (
     <header className="p-3 flex">
       <Button variant="none">
@@ -16,8 +27,11 @@ const UnAuthHeader: React.FunctionComponent<IUnAuthHeaderProps> = (props) => {
           height={48}></Image>
       </Button>
       <Input
+        value={searchValue}
+        onChange={(e) => setSearchValue(e.target.value)}
+        onKeyDown={handleKeyDown}
         icon="/icons/search.png"
-        placeholder="키워드로 검색하기"
+        placeholder="검색어를 입력해주세요"
         className="rounded-full"></Input>
       <div className="flex gap-2 pl-10">
         <Button>포토카드 판매하기</Button>

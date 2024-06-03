@@ -8,24 +8,24 @@ export const CATEGORY = [
     korname: "걸그룹",
   },
   {
-    engname: "actorboy",
+    engname: "MALE_ACTOR",
     korname: "남배우",
   },
   {
-    engname: "actorgirl",
+    engname: "ACTRESS",
     korname: "여배우",
   },
   {
-    engname: "boysolo",
+    engname: "MALE_SOLO",
     korname: "남자 솔로",
   },
   {
-    engname: "girlsolo",
+    engname: "FEMALE_SOLO",
     korname: "여자 솔로",
   },
 
   {
-    engname: "character",
+    engname: "CHARACTER",
     korname: "방송/예능/캐릭터",
   },
 ];

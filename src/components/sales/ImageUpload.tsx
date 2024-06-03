@@ -9,7 +9,7 @@ interface IImageUploadProps {}
 const ImageUpload: React.FunctionComponent<IImageUploadProps> = (props) => {
   const [previewSrcs, setPreviewSrcs] = React.useState<string[]>([]);
   const fileInputRef = React.useRef<HTMLInputElement>(null);
-  const { formData, setFormData, setThumbnailId, setImageId } = useFormStore();
+  const { setThumbnailId, setImageId } = useFormStore();
 
   const handleImageClick = () => {
     if (fileInputRef.current) {
@@ -53,23 +53,27 @@ const ImageUpload: React.FunctionComponent<IImageUploadProps> = (props) => {
               src="/images/salesimagebackground.png"
               alt="salesbackground"
               width={600}
-              height={620}></Image>
+              height={620}
+            />
             <div className="absolute inset-0 grid grid-cols-3 gap-2 p-2 m-12">
               {previewSrcs.map((src, index) => (
-                <div className="flex justify-center items-center overflow-hidden">
+                <div
+                  key={index} // Add key here
+                  className="flex justify-center items-center overflow-hidden">
                   <div
                     className={cn(
                       index == 0
                         ? "relative border-2 border-primary rounded-lg"
                         : "relative rounded-lg"
                     )}>
-                    <div className="absolute  top-0 left-0 p-1">
+                    <div className="absolute top-0 left-0 p-1">
                       <div className="relative">
                         <Image
                           src={`/icons/photocard_${index + 1}.png`}
                           alt="photocardicon"
                           width={32}
-                          height={32}></Image>
+                          height={32}
+                        />
                         <span
                           className={cn(
                             "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-primary text-sm font-bold"
@@ -87,13 +91,13 @@ const ImageUpload: React.FunctionComponent<IImageUploadProps> = (props) => {
                       </div>
                     )}
                     <Image
-                      key={index}
                       src={src}
                       alt={`Preview ${index + 1}`}
                       width={180}
                       height={300}
                       className="rounded-md"
-                      objectFit="cover"></Image>
+                      objectFit="cover"
+                    />
                   </div>
                 </div>
               ))}

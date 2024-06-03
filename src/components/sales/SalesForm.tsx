@@ -37,10 +37,10 @@ const SalesForm: React.FunctionComponent<ISalesFormProps> = (props) => {
 
   useEffect(() => {
     const subscription = form.watch((values) => {
-      setFormData(values);
+      setFormData(values as z.infer<typeof ProductSchema>);
     });
     return () => subscription.unsubscribe();
-  }, [form.watch, setFormData]);
+  }, [form, setFormData]);
 
   const selectedTransactionType = form.watch("transaction");
   console.log(selectedTransactionType);
@@ -91,7 +91,7 @@ const SalesForm: React.FunctionComponent<ISalesFormProps> = (props) => {
                   </FormControl>
                   <SelectContent>
                     {CATEGORY.map((item) => (
-                      <SelectItem value={item.engname}>
+                      <SelectItem key={item.engname} value={item.engname}>
                         {item.korname}
                       </SelectItem>
                     ))}
