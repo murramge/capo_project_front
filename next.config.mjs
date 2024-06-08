@@ -12,7 +12,7 @@ const nextConfig = {
     disableStaticImages: true,
 
   },
-  output: 'standalone',
+  
   distDir: 'out',
 };
 
