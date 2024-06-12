@@ -110,8 +110,8 @@ const RegisterForm: React.FunctionComponent<IRegisterFormProps> = (props) => {
   };
 
   return (
-    <main className="w-6/12 h-screen flex justify-center items-center p-10">
-      <div className="w-3/4 border m-20">
+    <main className="w-4/12 h-screen flex justify-center items-center ">
+      <div className="w-3/4  m-20">
         <div className="p-10 pl-20">
           <span className={cn("text-xl text-primary font-bold")}>회원가입</span>
         </div>
@@ -153,7 +153,7 @@ const RegisterForm: React.FunctionComponent<IRegisterFormProps> = (props) => {
                                 <button
                                   type="button"
                                   className={cn(
-                                    "w-[20%] text-xs text-primary font-bold"
+                                    "w-[30%] text-xs text-primary font-bold"
                                   )}
                                   onClick={onVerificationCode}>
                                   이메일 인증

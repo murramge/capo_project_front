@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 
 const Logout = () => {
   const router = useRouter();
-  localStorage.removeItem("accessToken");
+  localStorage.removeItem("refreshToken");
   router.push("/login");
 };
 

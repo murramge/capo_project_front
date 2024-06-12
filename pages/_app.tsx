@@ -12,16 +12,16 @@ export default function App({ Component, pageProps }: AppProps) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   useAuthGuard();
   useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken");
-    if (accessToken) {
+    const refreshToken = localStorage.getItem("refreshToken");
+    if (refreshToken) {
       setIsAuthenticated(true);
     } else {
       setIsAuthenticated(false);
     }
   }, []);
   useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken");
-    if (accessToken) {
+    const refreshToken = localStorage.getItem("refreshToken");
+    if (refreshToken) {
       setIsAuthenticated(true);
     } else {
       setIsAuthenticated(false);

@@ -37,9 +37,9 @@ const LoginForm: React.FunctionComponent<ILoginFormProps> = (props) => {
         password: values.password,
       });
 
-      const token = response.result.access_token;
+      const token = response.result.refresh_token;
       if (typeof window !== "undefined") {
-        localStorage.setItem("accessToken", token);
+        localStorage.setItem("refreshToken", token);
       }
       router.push("/");
     } catch (error: any) {
@@ -52,8 +52,8 @@ const LoginForm: React.FunctionComponent<ILoginFormProps> = (props) => {
   };
 
   return (
-    <main className="w-6/12 h-screen justify-center items-center p-10">
-      <div className="w-3/4 border m-20">
+    <main className="w-4/12 h-screen justify-center items-center">
+      <div className="w-3/4  m-20 pt-20">
         <div className="p-10 pl-20">
           <span className={cn("text-xl text-primary font-bold")}>로그인</span>
         </div>

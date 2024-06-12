@@ -5,7 +5,7 @@ const useAuthGuard = () => {
   const router = useRouter();
 
   useEffect(() => {
-    const isAuthenticated = !!localStorage.getItem("accessToken");
+    const isAuthenticated = !!localStorage.getItem("refreshToken");
     if (!isAuthenticated && !router.pathname.startsWith("/auth")) {
       router.push("/auth/login");
     }
@@ -15,8 +15,8 @@ const useAuthGuard = () => {
 export const useLoginGuard = () => {
   const router = useRouter();
   useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken");
-    if (accessToken) {
+    const refreshToken = localStorage.getItem("refreshToken");
+    if (refreshToken) {
       router.replace("/");
     }
   }, []);

@@ -10,7 +10,7 @@ const nextConfig = {
   images: {
     // Next.js의 이미지 최적화 비활성화 설정
     disableStaticImages: true,
-
+    domains: ['storage.googleapis.com'],
   },
   
   distDir: 'out',

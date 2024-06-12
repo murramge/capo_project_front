@@ -2,19 +2,21 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import * as React from "react";
 import Image from "next/image";
+import { usePhotoCardStore } from "@/src/utils/store";
 
 interface IAuthHeaderProps {}
 
 const AuthHeader: React.FunctionComponent<IAuthHeaderProps> = (props) => {
   const [searchValue, setSearchValue] = React.useState("");
-
+  const { setSearchTerm, searchData } = usePhotoCardStore();
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       handleSearch();
     }
   };
   const handleSearch = () => {
-    console.log("검색어:", searchValue);
+    setSearchTerm(searchValue);
+    searchData(searchValue);
   };
   return (
     <header className="p-3 flex">

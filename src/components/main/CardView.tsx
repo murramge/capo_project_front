@@ -1,8 +1,12 @@
 import { cn } from "@/lib/utils";
-import { GetPhotoCardListApi } from "@/src/api/GetPhotoCardListApi";
+import {
+  GetPhotoCardListApi,
+  fileDownloadApi,
+} from "@/src/api/GetPhotoCardListApi";
 import Image from "next/image";
 import * as React from "react";
 import dayjs from "dayjs";
+import { usePhotoCardStore } from "@/src/utils/store";
 
 interface IProduct {
   id: string;
@@ -15,15 +19,26 @@ interface IProduct {
 interface ICardViewProps {}
 
 const CardView: React.FunctionComponent<ICardViewProps> = (props) => {
-  const [data, setData] = React.useState<IProduct[]>([]);
+  const [url, setUrl] = React.useState<string[]>([]);
+
+  const { data, fetchData } = usePhotoCardStore();
 
   React.useEffect(() => {
-    const getData = async () => {
-      const response = await GetPhotoCardListApi();
-      setData(response.result.products);
-    };
-    getData();
+    fetchData();
   }, []);
+
+  React.useEffect(() => {
+    const downloadData = async () => {
+      const imageUrls = await Promise.all(
+        data.map(async (d) => {
+          const response = await fileDownloadApi(d.images[0].id);
+          return response.result.image_url;
+        })
+      );
+      setUrl(imageUrls); // 모든 이미지 URL을 한 번에 설정
+    };
+    downloadData();
+  }, [data]);
 
   return (
     <div>
@@ -33,7 +48,7 @@ const CardView: React.FunctionComponent<ICardViewProps> = (props) => {
             <div key={item.id || index}>
               <div>
                 <Image
-                  src="/images/samplephotocard.png"
+                  src={url[index] ? `${url[index]}` : `/images/skleton.png`}
                   alt="sample"
                   width={230}
                   height={310}
@@ -46,7 +61,7 @@ const CardView: React.FunctionComponent<ICardViewProps> = (props) => {
                       .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                     원
                   </p>
-                  <p className="text-md font-medium">{item.content}</p>
+                  <p className="text-md font-medium">{item.title}</p>
                   <div className="flex text-xs text-gray-400">
                     <p className="pr-1">
                       {dayjs(item.created_at).format("YY.MM.DD")}

@@ -33,8 +33,6 @@ const ImageUpload: React.FunctionComponent<IImageUploadProps> = (props) => {
       try {
         const response = await uploadFileApi(files[0]);
         if (response) {
-          console.log(response.result[0].thumbnail_path);
-          console.log(response.result[0].id);
           setThumbnailId(response.result[0].thumbnail_path);
           setImageId(response.result[0].id);
         }
@@ -48,14 +46,14 @@ const ImageUpload: React.FunctionComponent<IImageUploadProps> = (props) => {
     <div>
       <div onClick={handleImageClick} className="cursor-pointer relative">
         {previewSrcs.length > 0 ? (
-          <div className="relative w-full h-full flex items-center justify-center ">
+          <div className="relative flex">
             <Image
               src="/images/salesimagebackground.png"
               alt="salesbackground"
-              width={600}
+              width={700}
               height={620}
             />
-            <div className="absolute inset-0 grid grid-cols-3 gap-2 p-2 m-12">
+            <div className="absolute inset-0 grid grid-cols-3 m-20">
               {previewSrcs.map((src, index) => (
                 <div
                   key={index} // Add key here
@@ -93,7 +91,7 @@ const ImageUpload: React.FunctionComponent<IImageUploadProps> = (props) => {
                     <Image
                       src={src}
                       alt={`Preview ${index + 1}`}
-                      width={180}
+                      width={150}
                       height={300}
                       className="rounded-md"
                       objectFit="cover"
