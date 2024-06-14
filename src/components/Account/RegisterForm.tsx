@@ -196,7 +196,7 @@ const RegisterForm: React.FunctionComponent<IRegisterFormProps> = (props) => {
           </div>
         </Form>
         <div className="flex justify-between pl-20 p-5">
-          <Button variant="none">
+          <Button variant="none" onClick={() => router.push("/auth/login")}>
             <span className={cn("text-xs text-primary")}>로그인</span>
           </Button>
         </div>

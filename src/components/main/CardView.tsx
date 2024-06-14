@@ -6,6 +6,7 @@ import {
 import Image from "next/image";
 import * as React from "react";
 import dayjs from "dayjs";
+import { useRouter } from "next/router";
 import { usePhotoCardStore } from "@/src/utils/store";
 
 interface IProduct {
@@ -20,7 +21,7 @@ interface ICardViewProps {}
 
 const CardView: React.FunctionComponent<ICardViewProps> = (props) => {
   const [url, setUrl] = React.useState<string[]>([]);
-
+  const router = useRouter();
   const { data, fetchData } = usePhotoCardStore();
 
   React.useEffect(() => {
@@ -32,7 +33,9 @@ const CardView: React.FunctionComponent<ICardViewProps> = (props) => {
       const imageUrls = await Promise.all(
         data.map(async (d) => {
           const response = await fileDownloadApi(d.images[0].id);
-          return response.result.image_url;
+          if (response.result) {
+            return response.result.image_url;
+          }
         })
       );
       setUrl(imageUrls); // 모든 이미지 URL을 한 번에 설정
@@ -45,7 +48,10 @@ const CardView: React.FunctionComponent<ICardViewProps> = (props) => {
       <div className="grid grid-cols-4 gap-4">
         {data &&
           data.map((item, index) => (
-            <div key={item.id || index}>
+            <div
+              onClick={() => router.push(`/photocard/${item.product_seq}`)}
+              key={item.id || index}
+              className="cursor-pointer">
               <div>
                 <Image
                   src={url[index] ? `${url[index]}` : `/images/skleton.png`}

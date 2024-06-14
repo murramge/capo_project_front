@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import * as React from "react";
 import { useFormStore } from "../../utils/store";
 import { CreatePhotocardApi } from "@/src/api/CreatePhotoCardApi";
+import { useRouter } from "next/router";
 
 interface ISalesPageHeaderProps {}
 
@@ -9,7 +10,7 @@ const SalesPageHeader: React.FunctionComponent<ISalesPageHeaderProps> = (
   props
 ) => {
   const { formData, thumbnailId, imageId } = useFormStore();
-
+  const router = useRouter();
   const handleProductSale = async () => {
     try {
       const response = await CreatePhotocardApi({
@@ -20,7 +21,7 @@ const SalesPageHeader: React.FunctionComponent<ISalesPageHeaderProps> = (
         thumbnail_id: thumbnailId,
         images: [imageId],
       });
-      console.log(response);
+      router.push("/");
     } catch (error) {
       console.error(error);
     }

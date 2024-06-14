@@ -1,6 +1,7 @@
 import { CATEGORY } from "@/src/utils/constants";
 import React, { useState } from "react";
 import Image from "next/image";
+import { usePhotoCardStore } from "@/src/utils/store";
 
 interface ICategoryProps {}
 
@@ -32,7 +33,7 @@ const ListItem: React.FC<{
         <span>
           {name === "barter"
             ? "교환하기"
-            : name === "all"
+            : name === "ALL"
             ? "전체"
             : CATEGORY.find((category) => category.engname === name)?.korname}
         </span>
@@ -43,17 +44,20 @@ const ListItem: React.FC<{
 
 const Category: React.FunctionComponent<ICategoryProps> = () => {
   const [categoryActive, setCategoryActive] = useState("");
+  const { setCategoryName, categoryData } = usePhotoCardStore();
 
   const onClickCategory = (name: string) => {
     //전역변수로 사용해야 할 것 같음.
+    setCategoryName(name);
+    categoryData(name);
     setCategoryActive((prev) => (prev === name ? "" : name));
   };
 
   return (
     <ul className="flex flex-col w-full h-full gap-2 list-none px-2">
       <ListItem
-        name="all"
-        active={categoryActive === "all"}
+        name="ALL"
+        active={categoryActive === "ALL"}
         onClick={onClickCategory}
       />
       {CATEGORY.map(({ engname }) => (

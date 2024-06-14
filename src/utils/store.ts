@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { z } from "zod";
 import { ProductSchema } from "@/src/utils/ProductSchema";
 import {
+  CategoryCardListApi,
   GetPhotoCardListApi,
   SearchPhotoCardListApi,
 } from "../api/GetPhotoCardListApi";
@@ -13,6 +14,17 @@ interface FormState {
   setThumbnailId: (id: string) => void;
   imageId: string;
   setImageId: (id: string) => void;
+}
+
+interface PhotoCardStore {
+  data: any[];
+  searchTerm: string;
+  categoryName: string;
+  setSearchTerm: (term: string) => void;
+  setCategoryName: (name: string) => void;
+  fetchData: () => Promise<void>;
+  searchData: (term: string) => Promise<void>;
+  categoryData: (name: string) => Promise<void>;
 }
 
 export const useFormStore = create<FormState>((set) => ({
@@ -30,23 +42,31 @@ export const useFormStore = create<FormState>((set) => ({
   setImageId: (id) => set({ imageId: id }),
 }));
 
-export const usePhotoCardStore = create((set) => ({
+export const usePhotoCardStore = create<PhotoCardStore>((set) => ({
   data: [],
   searchTerm: "",
-  setSearchTerm: (term: any) => set({ searchTerm: term }),
+  categoryName: "",
+  setSearchTerm: (term: string) => set({ searchTerm: term }),
+  setCategoryName: (name: string) => set({ categoryName: name }),
   fetchData: async () => {
     try {
       const response = await GetPhotoCardListApi();
-      console.log(response);
       set({ data: response.result.products });
     } catch (error) {
       console.error(error);
     }
   },
-  searchData: async (searchTerm: any) => {
+  searchData: async (searchTerm: string) => {
     try {
       const response = await SearchPhotoCardListApi(searchTerm);
-      console.log(response);
+      set({ data: response.result.products });
+    } catch (error) {
+      console.error(error);
+    }
+  },
+  categoryData: async (categoryName: string) => {
+    try {
+      const response = await CategoryCardListApi(categoryName);
       set({ data: response.result.products });
     } catch (error) {
       console.error(error);
