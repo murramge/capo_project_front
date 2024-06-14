@@ -8,6 +8,7 @@ const SortCategory: React.FunctionComponent<ISortCategoryProps> = (props) => {
   const [selectedButton, setSelectedButton] = React.useState("최신순");
 
   const handleButtonClick = (buttonName: any) => {
+    console.log(buttonName);
     setSelectedButton(buttonName);
   };
 

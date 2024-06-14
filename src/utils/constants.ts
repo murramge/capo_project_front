@@ -29,3 +29,12 @@ export const CATEGORY = [
     korname: "방송/예능/캐릭터",
   },
 ];
+export const SORT_CATEGORY = [
+  {
+    최신순: ["createAt", "desc"],
+    인기순: ["likeCount", "desc"],
+    조회순: ["views", "desc"],
+    저가순: ["price", "asc"],
+    고가순: ["price", "desc"],
+  },
+];

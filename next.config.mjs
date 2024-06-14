@@ -1,5 +1,3 @@
-// next.config.js
-
 const nextConfig = {
   reactStrictMode: true,
 
@@ -14,6 +12,16 @@ const nextConfig = {
   },
   
   distDir: 'out',
+
+  exportPathMap: async function (
+    defaultPathMap,
+    { dev, dir, outDir, distDir, buildId }
+  ) {
+    return {
+      '/': { page: '/' },
+      // 필요한 경로를 추가로 설정할 수 있습니다.
+    }
+  },
 };
 
 export default nextConfig;
