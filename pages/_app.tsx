@@ -29,7 +29,7 @@ export default function App({ Component, pageProps }: AppProps) {
   }, [router.pathname]);
   return (
     <>
-      {isAuthenticated ? <AuthHeader /> : <UnAuthHeader />}
+      {isAuthenticated ? <AuthHeader /> : <></>}
       <Component {...pageProps} />
     </>
   );

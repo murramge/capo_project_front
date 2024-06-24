@@ -47,7 +47,6 @@ const Category: React.FunctionComponent<ICategoryProps> = () => {
   const { setCategoryName, categoryData } = usePhotoCardStore();
 
   const onClickCategory = (name: string) => {
-    //전역변수로 사용해야 할 것 같음.
     setCategoryName(name);
     categoryData(name);
     setCategoryActive((prev) => (prev === name ? "" : name));
