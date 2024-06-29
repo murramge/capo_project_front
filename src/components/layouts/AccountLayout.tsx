@@ -1,5 +1,5 @@
 import * as React from "react";
-import Introduce from "../Account/Introduce";
+
 import LoginForm from "../Account/LoginForm";
 import RegisterForm from "../Account/RegisterForm"; // 새로운 회원가입 컴포넌트 추가
 import { usePathname } from "next/navigation";
@@ -35,10 +35,17 @@ const AccountLayout: React.FunctionComponent = () => {
           style={{ top: "100px", left: "100px" }}></div>
         <div
           className="heart absolute w-14 h-12 bg-[url('/images/heart.png')] animate-bounce"
+          style={{ top: "150px", left: "200px" }}></div>
+        <div
+          className="heart absolute w-14 h-12 bg-[url('/images/heart.png')] animate-bounce"
           style={{ top: "200px", left: "300px" }}></div>
+
         <div
           className="heart absolute w-14 h-12 bg-[url('/images/heart.png')] animate-bounce"
           style={{ top: "50px", left: "350px" }}></div>
+        <div
+          className="heart absolute w-14 h-12 bg-[url('/images/heart.png')] animate-bounce"
+          style={{ top: "20px", left: "0px" }}></div>
         <div
           className="heart absolute w-14 h-12 bg-[url('/images/heart.png')] animate-bounce"
           style={{ top: "0px", left: "500px" }}></div>

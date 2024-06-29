@@ -71,7 +71,6 @@ const LoginForm: React.FunctionComponent<ILoginFormProps> = (props) => {
                           <FormItem>
                             <FormControl>
                               <Input
-                                icon={`/icons/${item.name}.png`}
                                 type={item.type}
                                 placeholder={item.label}
                                 {...field}
