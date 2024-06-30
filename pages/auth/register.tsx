@@ -6,7 +6,7 @@ interface IRegisterProps {}
 
 const Register: React.FunctionComponent<IRegisterProps> = (props) => {
   useLoginGuard();
-  return <AccountLayout></AccountLayout>;
+  return <AccountLayout heartCount={12} />;
 };
 
 export default Register;

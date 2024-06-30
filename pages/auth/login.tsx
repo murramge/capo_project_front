@@ -7,7 +7,7 @@ interface ILoginProps {}
 
 const Login: React.FunctionComponent<ILoginProps> = (props) => {
   useLoginGuard();
-  return <AccountLayout></AccountLayout>;
+  return <AccountLayout heartCount={12} />;
 };
 
 export default Login;

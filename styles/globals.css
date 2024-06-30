@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Galmuri";
+  src: url("/fonts/Galmuri11.ttf");
+}
+
+@font-face {
+  font-family: "GalmuriBold";
+  src: url("/fonts/Galmuri11-Bold.ttf");
+}
+
+@font-face {
+  font-family: "Pretandard";
+  src: url("/fonts/Pretendard-Regular.ttf");
+}
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -72,5 +86,6 @@
   }
   body {
     @apply bg-background text-foreground;
+    @apply font-['Pretandard'];
   }
 }

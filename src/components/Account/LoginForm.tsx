@@ -56,7 +56,9 @@ const LoginForm: React.FunctionComponent<ILoginFormProps> = (props) => {
       <main className="w-4/12 h-screen justify-center items-center">
         <div className="w-3/4  m-20 pt-20">
           <div className="p-10 pl-20">
-            <span className={cn("text-xl text-primary font-bold")}>로그인</span>
+            <span className={cn("text-xl text-primary  font-[GalmuriBold]")}>
+              Sign In
+            </span>
           </div>
           <div className="flex justify-center items-center ">
             <div className="w-3/4">
