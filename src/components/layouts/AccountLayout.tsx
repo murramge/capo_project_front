@@ -4,6 +4,7 @@ import LoginForm from "../Account/LoginForm";
 import RegisterLayout from "./RegisterLayout";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import WelcomeCapo from "../Account/WelcomeCapo";
 
 interface Heart {
   id: number;
