@@ -110,7 +110,8 @@ const RegisterTwoStep: React.FunctionComponent<IRegisterTwoStepProps> = ({
                         <Button
                           type="button"
                           variant="secondary"
-                          onClick={onVerificationCode}>
+                          onClick={onVerificationCode}
+                          className="mx-2">
                           인증번호 전송
                         </Button>
                       </div>
@@ -144,7 +145,8 @@ const RegisterTwoStep: React.FunctionComponent<IRegisterTwoStepProps> = ({
                         <Button
                           type="button"
                           variant="secondary"
-                          onClick={onVerificationCodeCheck}>
+                          onClick={onVerificationCodeCheck}
+                          className="mx-2">
                           인증하기
                         </Button>
                       </div>

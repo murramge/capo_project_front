@@ -49,19 +49,49 @@ const RegisterLayout: React.FunctionComponent<IRegisterLayoutProps> = (
     }
   };
 
+  const InfoStateBar = ({ statenumber, infomation }: any) => {
+    return (
+      <>
+        <div className="flex justify-center items-center ">
+          <div className="relative border-2 w-[70%] mb-3 border-slate-100 rounded-xl ">
+            <div
+              className={cn(
+                `absolute border-2 w-[${statenumber}%] mb-3 border-primary rounded-xl mt-[-2px] ml-[-2px]`
+              )}></div>
+          </div>
+        </div>
+        <div className="pl-20 mb-5">
+          <span>{infomation}</span>
+        </div>
+      </>
+    );
+  };
+
   return (
     <main className="w-4/12 h-screen flex justify-center items-center ">
-      <div className="w-3/4  m-20">
-        <div className="p-10 pl-20">
-          <span className={cn("text-xl text-primary font-bold")}>회원가입</span>
+      <div className="w-3/4 m-20">
+        <div className="pl-20 pb-6">
+          <span className={cn("text-xl text-primary font-[GalmuriBold]")}>
+            Sign Up
+          </span>
         </div>
         {step === 1 && (
-          <RegisterOneStep onNext={handleStep1Submit}></RegisterOneStep>
+          <>
+            <InfoStateBar
+              statenumber={50}
+              infomation={"회원가입 정보를 입력해 주세요"}></InfoStateBar>
+            <RegisterOneStep onNext={handleStep1Submit}></RegisterOneStep>
+          </>
         )}
         {step === 2 && (
-          <RegisterTwoStep
-            onSubmit={handleStep2Submit}
-            onBack={handleBack}></RegisterTwoStep>
+          <>
+            <InfoStateBar
+              statenumber={100}
+              infomation={"이메일을 인증해주세요"}></InfoStateBar>
+            <RegisterTwoStep
+              onSubmit={handleStep2Submit}
+              onBack={handleBack}></RegisterTwoStep>
+          </>
         )}
       </div>
     </main>
