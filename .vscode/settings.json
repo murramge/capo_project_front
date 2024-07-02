@@ -1,3 +1,7 @@
 {
-  "powermode.presets": "particles"
+  "powermode.presets": "flames",
+  "powermode.combo.location": "statusbar",
+  "powermode.combo.counterEnabled": "show",
+  "powermode.shake.enabled": false,
+  "powermode.explosions.enabled": true
 }

@@ -8,6 +8,7 @@ import * as React from "react";
 import dayjs from "dayjs";
 import { useRouter } from "next/router";
 import { usePhotoCardStore } from "@/src/utils/store";
+import Loading from "../common/Loading";
 
 interface IProduct {
   id: string;
@@ -42,6 +43,14 @@ const CardView: React.FunctionComponent<ICardViewProps> = (props) => {
     };
     downloadData();
   }, [data]);
+
+  if (data.length == 0) {
+    return (
+      <div>
+        <Loading></Loading>
+      </div>
+    ); // 데이터가 없을 때 로딩 상태 표시
+  }
 
   return (
     <div>
