@@ -38,3 +38,6 @@ export const SORT_CATEGORY = [
     고가순: ["price", "desc"],
   },
 ];
+
+export const leftArrow = "<";
+export const rightArrow = ">";

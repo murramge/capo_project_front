@@ -56,7 +56,7 @@ const ImageUpload: React.FunctionComponent<IImageUploadProps> = (props) => {
             <div className="absolute inset-0 grid grid-cols-3 m-20">
               {previewSrcs.map((src, index) => (
                 <div
-                  key={index} // Add key here
+                  key={index}
                   className="flex justify-center items-center overflow-hidden">
                   <div
                     className={cn(

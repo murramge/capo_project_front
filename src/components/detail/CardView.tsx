@@ -8,6 +8,8 @@ import { cn } from "@/lib/utils";
 import dayjs from "dayjs";
 import { Button } from "@/components/ui/button";
 import Loading from "../common/Loading";
+import { leftArrow, rightArrow } from "@/src/utils/constants";
+import CategoryCardListView from "./CategoryCardListView";
 interface ICardViewProps {}
 
 const CardView: React.FunctionComponent<ICardViewProps> = (props) => {
@@ -58,6 +60,7 @@ const CardView: React.FunctionComponent<ICardViewProps> = (props) => {
     return (
       <div>
         <Loading></Loading>
+        <CategoryCardListView></CategoryCardListView>
       </div>
     ); // 데이터가 없을 때 로딩 상태 표시
   }

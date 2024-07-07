@@ -46,7 +46,13 @@ const AuthHeader: React.FunctionComponent<IAuthHeaderProps> = (props) => {
           채팅하기
         </Button>
         <Button variant="outline">
-          <div className={cn("p-3 bg-primary rounded-full mr-1")}></div>
+          <div className="w-[30px] h-[30px] relative">
+            <Image
+              src="/images/profile.png"
+              fill
+              alt="image"
+              className="rounded-full"></Image>
+          </div>
           프로필
         </Button>
         <Button onClick={() => router.push("/photocard/sales")}>

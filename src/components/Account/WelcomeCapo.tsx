@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import * as React from "react";
 
 interface IWelcomeCapoProps {
-  userid?: string; //test로 해놓음. 나중에 ?: -> : 로 해야함
+  userid?: string; //TODO: test로 해놓음. 나중에 ?: -> : 로 해야함
 }
 
 const WelcomeCapo: React.FunctionComponent<IWelcomeCapoProps> = ({
