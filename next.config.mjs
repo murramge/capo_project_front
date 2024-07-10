@@ -2,7 +2,7 @@
 
 const nextConfig = {
   reactStrictMode: true,
-
+  output: "export",
   webpack: (config, { isServer }) => {
     delete config.optimization.splitChunks;
     return config;
@@ -13,7 +13,6 @@ const nextConfig = {
     domains: ["storage.googleapis.com"],
     unoptimized: true,
   },
-  distDir: "out",
 };
 
 export default nextConfig;
