@@ -54,11 +54,11 @@ const RegisterOneStep: React.FunctionComponent<IRegisterOneStepProps> = ({
   };
 
   const onSubmit: SubmitHandler<registerStep1Data> = (data) => {
-    // if (checkDuplication) {
-    onNext(data);
-    // } else {
-    //   alert("아이디 중복확인을 해주세요");
-    // }
+    if (checkDuplication) {
+      onNext(data);
+    } else {
+      alert("아이디 중복확인을 해주세요");
+    }
   };
 
   return (

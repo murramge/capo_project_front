@@ -79,11 +79,11 @@ const RegisterTwoStep: React.FunctionComponent<IRegisterTwoStepProps> = ({
   };
 
   const onVerify: SubmitHandler<registerStep2Data> = (data) => {
-    // if (checkVerifyCode) {
-    onSubmit(data);
-    // } else {
-    //   alert("이메일 인증을 해주세요");
-    // }
+    if (checkVerifyCode) {
+      onSubmit(data);
+    } else {
+      alert("이메일 인증을 해주세요");
+    }
   };
 
   return (

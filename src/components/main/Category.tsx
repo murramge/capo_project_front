@@ -33,7 +33,7 @@ const ListItem: React.FC<{
         <span>
           {name === "barter"
             ? "교환하기"
-            : name === "ALL"
+            : name === "all"
             ? "전체"
             : CATEGORY.find((category) => category.engname === name)?.korname}
         </span>
