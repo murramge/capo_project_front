@@ -10,6 +10,7 @@ const ListItem: React.FC<{
   active: boolean;
   onClick: (name: string) => void;
 }> = ({ name, active, onClick }) => {
+  console.log(name);
   const handleClick = () => {
     onClick(name);
   };
@@ -55,8 +56,8 @@ const Category: React.FunctionComponent<ICategoryProps> = () => {
   return (
     <ul className="flex flex-col w-full h-full gap-2 list-none px-2">
       <ListItem
-        name="ALL"
-        active={categoryActive === "ALL"}
+        name="all"
+        active={categoryActive === "all"}
         onClick={onClickCategory}
       />
       {CATEGORY.map(({ engname }) => (
