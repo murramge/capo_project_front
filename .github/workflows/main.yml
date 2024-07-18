@@ -21,6 +21,6 @@ jobs:
     - name: Build the Docker image
       run: docker build -t front .
     - name: taging
-      run: docker tag front:latest mag123c/front:latest
+      run: docker tag front:latest front:latest
     - name: Push to Dockerhub
-      run: docker push mag123c/front:latest
+      run: docker push front:latest
