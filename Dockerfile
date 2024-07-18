@@ -25,4 +25,7 @@ RUN rm -rf /etc/nginx/conf.d/*
 # default.conf을 /etc/nginx/conf.d/ 경로에 있는 default.conf에 복사한다.
 COPY nginx/default.conf /etc/nginx/conf.d/default.conf
 
-COPY --from=builder app/out /usr/share/nginx/html
+COPY --from=build /app/build /usr/share/nginx/html
+
+# nginx 실행
+CMD [ "nginx", "-g", "daemon off;" ] 
