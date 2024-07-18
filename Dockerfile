@@ -1,6 +1,6 @@
-FROM node:21-alpine
+FROM node:21-alpine AS builder
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
 COPY package*.json ./
 
@@ -27,6 +27,3 @@ COPY nginx/default.conf /etc/nginx/conf.d/default.conf
 
 COPY --from=builder /app/out /usr/share/nginx/html
 
-# nginx 실행
-
-CMD [ "nginx", "-g", "daemon off;" ] 
