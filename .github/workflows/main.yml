@@ -31,7 +31,8 @@ jobs:
       uses: fifsky/ssh-action@master
       with:
         command: |
-          docker pull ${{secrets.DOCKER_REPO}}/front
+          sudo docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
+          sudo docker pull ${{secrets.DOCKER_REPO}}/front
         host: ${{secrets.HOST}}
         user: ${{secrets.USERNAME}}
         key: ${{secrets.KEY}}
