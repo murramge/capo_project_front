@@ -27,8 +27,9 @@ jobs:
     - name: Push to Dockerhub
       run: docker push hanseu9839/front:latest
     
-    - name: aws ec2 docker image pull
-      uses: fifsky/ssh-action@master
+    - name: Deploy to server
+      uses: appleboy/ssh-action@master
+      id: deploy
       env:
         APP: "front"
         COMPOSE: "/home/capo_project/docker-compose.yml"
