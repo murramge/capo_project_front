@@ -29,10 +29,15 @@ jobs:
     
     - name: aws ec2 docker image pull
       uses: fifsky/ssh-action@master
+      env:
+        APP: "front"
+        COMPOSE: "/home/capo_project/docker-compose.yml"
       with:
         command: |
           sudo docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
-          sudo docker pull ${{secrets.DOCKER_REPO}}/front
+          sudo docker rm -f $(docker ps -qa)
+          sudo docker pull ${{secrets.DOCKER_REPO}}/$APP
+          sudo docker-compose -f $COMPOSE up -d
         host: ${{secrets.HOST}}
         user: ${{secrets.USERNAME}}
         key: ${{secrets.KEY}}
