@@ -32,12 +32,12 @@ jobs:
       id: deploy
       env:
         APP: "front"
-        COMPOSE: "home/capo_project/docker-compose.yml"
+        COMPOSE: "/home/capo_project/docker-compose.yml"
       with:
         command: |
           sudo docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
           sudo docker pull ${{secrets.DOCKER_REPO}}/front
-          sudo docker-compose -f $COMPOSE up -d
+          sudo docker-compose -f /home/capo_project/docker-compose.yml up -d
         host: ${{secrets.HOST}}
         user: ${{secrets.USERNAME}}
         key: ${{secrets.KEY}}
