@@ -20,7 +20,18 @@ jobs:
 
     - name: Build the Docker image
       run: docker build -t hanseu9839/front .
+    
     - name: taging
       run: docker tag hanseu9839/front:latest hanseu9839/front:latest
+    
     - name: Push to Dockerhub
       run: docker push hanseu9839/front:latest
+    
+    - name: aws ec2 docker image pull
+      uses: fifsky/ssh-action@master
+      with:
+        command: |
+          docker pull ${{secrets.DOCKER_REPO}}/front
+        host: ${{secrets.HOST}}
+        user: ${{secrets.USERNAME}}
+        key: ${{secrets.KEY}}
