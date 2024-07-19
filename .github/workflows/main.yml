@@ -17,6 +17,12 @@ jobs:
         DOCKER_USERNAME: ${{secrets.DOCKERHUB_USERNAME}}
         DOCKER_PASSWORD: ${{secrets.DOCKERHUB_PASSWORD}}
       run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD      
+      
+    - name: make .env
+      run: |
+        touch .env
+        echo "${{ secrets.SECRET_ENV }}" > .env
+
 
     - name: Build the Docker image
       run: docker build -t hanseu9839/front .
@@ -41,3 +47,5 @@ jobs:
         host: ${{secrets.HOST}}
         user: ${{secrets.USERNAME}}
         key: ${{secrets.KEY}}
+
+
