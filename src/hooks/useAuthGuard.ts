@@ -2,8 +2,6 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 const useAuthGuard = () => {
-  const router = useRouter();
-
   // useEffect(() => {
   //   const isAuthenticated = !!localStorage.getItem("refreshToken");
   //   if (!isAuthenticated && !router.pathname.startsWith("/auth")) {
