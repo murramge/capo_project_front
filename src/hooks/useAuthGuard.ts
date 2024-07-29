@@ -4,22 +4,22 @@ import { useEffect } from "react";
 const useAuthGuard = () => {
   const router = useRouter();
 
-  useEffect(() => {
-    const isAuthenticated = !!localStorage.getItem("refreshToken");
-    if (!isAuthenticated && !router.pathname.startsWith("/auth")) {
-      router.push("/auth/login");
-    }
-  }, []);
+  // useEffect(() => {
+  //   const isAuthenticated = !!localStorage.getItem("refreshToken");
+  //   if (!isAuthenticated && !router.pathname.startsWith("/auth")) {
+  //     router.push("/auth/login");
+  //   }
+  // }, []);
 };
 
 export const useLoginGuard = () => {
-  const router = useRouter();
-  useEffect(() => {
-    const refreshToken = localStorage.getItem("refreshToken");
-    if (refreshToken) {
-      router.replace("/");
-    }
-  }, []);
+  // const router = useRouter();
+  // useEffect(() => {
+  //   const refreshToken = localStorage.getItem("refreshToken");
+  //   if (refreshToken) {
+  //     router.replace("/");
+  //   }
+  // }, []);
 };
 
 export default useAuthGuard;

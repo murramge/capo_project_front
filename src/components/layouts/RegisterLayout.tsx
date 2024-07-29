@@ -81,7 +81,7 @@ const RegisterLayout: React.FunctionComponent<IRegisterLayoutProps> = (
   };
 
   return (
-    <main className="w-4/12 h-screen flex justify-center items-center ">
+    <main className="w-4/12 flex justify-center items-center ">
       {welcomeCapo ? (
         <WelcomeCapo userid={userid}></WelcomeCapo>
       ) : (
