@@ -11,7 +11,7 @@ const SocialLogin: React.FunctionComponent<ISocialLoginProps> = (props) => {
 
     console.log(client_id, redirect_uri);
     const url = `https://kauth.kakao.com/oauth/authorize?scope=account_email&client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=code&prompt=login`;
-
+    console.log("Redirect URL:", url);
     window.location.href = url;
   };
 

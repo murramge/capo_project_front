@@ -5,7 +5,7 @@ import * as React from "react";
 interface IRegisterProps {}
 
 const Register: React.FunctionComponent<IRegisterProps> = (props) => {
-  useLoginGuard();
+  // useLoginGuard();
   return <AccountLayout heartCount={6} />;
 };
 

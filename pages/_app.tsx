@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  useAuthGuard();
+  // useAuthGuard();
   useEffect(() => {
     const refreshToken = localStorage.getItem("refreshToken");
     if (refreshToken) {

@@ -8,7 +8,7 @@ import SalesFooter from "../sales/SalesFooter";
 interface ISalesLayoutProps {}
 
 const SalesLayout: React.FunctionComponent<ISalesLayoutProps> = (props) => {
-  useAuthGuard();
+  // useAuthGuard();
   return (
     <div>
       <div className="p-5">

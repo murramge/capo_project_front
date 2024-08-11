@@ -40,8 +40,12 @@ const UnAuthHeader: React.FunctionComponent<IUnAuthHeaderProps> = (props) => {
         <Button onClick={() => router.push("/photocard/sales")}>
           포토카드 판매하기
         </Button>
-        <Button variant="outline">로그인</Button>
-        <Button variant="outline">회원가입</Button>
+        <Button variant="outline" onClick={() => router.push("/auth/login")}>
+          로그인
+        </Button>
+        <Button variant="outline" onClick={() => router.push("/auth/register")}>
+          회원가입
+        </Button>
       </div>
     </header>
   );
