@@ -12,16 +12,16 @@ export default function App({ Component, pageProps }: AppProps) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   // useAuthGuard();
   useEffect(() => {
-    const refreshToken = localStorage.getItem("refreshToken");
-    if (refreshToken) {
+    const accessToken = localStorage.getItem("accessToken");
+    if (accessToken) {
       setIsAuthenticated(true);
     } else {
       setIsAuthenticated(false);
     }
   }, []);
   useEffect(() => {
-    const refreshToken = localStorage.getItem("refreshToken");
-    if (refreshToken) {
+    const accessToken = localStorage.getItem("accessToken");
+    if (accessToken) {
       setIsAuthenticated(true);
     } else {
       setIsAuthenticated(false);
@@ -29,7 +29,10 @@ export default function App({ Component, pageProps }: AppProps) {
   }, [router.pathname]);
   return (
     <>
-      {isAuthenticated ? <AuthHeader /> : <UnAuthHeader />}
+      <div className="h-20">
+        {isAuthenticated ? <AuthHeader /> : <UnAuthHeader />}
+      </div>
+
       <Component {...pageProps} />
     </>
   );

@@ -76,7 +76,7 @@ const AccountLayout: React.FunctionComponent<Props> = ({ heartCount }) => {
   }, [initializeHearts, heartCount]);
 
   return (
-    <div className="flex  justify-center items-center bg-[url('/images/contents.png')] bg-cover h-screen">
+    <div className="flex relative justify-center items-center bg-[url('/images/contents.png')] bg-cover h-screen">
       <div className="heart-container relative w-[500px] h-[100%] pointer-events-none">
         {hearts.map((heart) => (
           <div

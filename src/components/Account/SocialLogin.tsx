@@ -17,9 +17,9 @@ const SocialLogin: React.FunctionComponent<ISocialLoginProps> = () => {
       console.error("Kakao Client ID or Redirect URI is missing.");
       return;
     }
-
-    const url = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${client_id}&redirect_uri=${redirect_uri}&scope=account_email`;
-
+    const kakao_url = `${process.env["NEXT_PUBLIC_KAKAO_URL"]}`
+    // const url = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${client_id}&redirect_uri=${redirect_uri}&scope=account_email`;
+    const url = `${kakao_url}`
     console.log("Kakao Login URL:", url);
     window.location.href = url;
   };

@@ -37,9 +37,9 @@ const LoginForm: React.FunctionComponent<ILoginFormProps> = (props) => {
         password: values.password,
       });
 
-      const token = response.result.refresh_token;
+      const token = response.result.access_token;
       if (typeof window !== "undefined") {
-        localStorage.setItem("refreshToken", token);
+        localStorage.setItem("accessToken", token);
       }
       router.push("/");
     } catch (error: any) {
