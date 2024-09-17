@@ -8,10 +8,10 @@ const SocialLogin: React.FunctionComponent<ISocialLoginProps> = (props) => {
   const KakaoLogin = () => {
     const client_id = `${process.env.NEXT_PUBLIC_KAKAO_CLIENT_ID}`;
     const redirect_uri = `${process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URL}`;
-
+    const kakao_uri = `${process.env.NEXT_PUBLIC_KAKAO_URL}`;
     console.log(client_id, redirect_uri);
-    const url = `https://kauth.kakao.com/oauth/authorize?scope=account_email&client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=code&prompt=login`;
-
+    // const url = `https://kauth.kakao.com/oauth/authorize?scope=account_email&client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=code&prompt=login`;
+    const url = `${kakao_uri}?`;
     window.location.href = url;
   };
 
